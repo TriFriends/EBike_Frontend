@@ -1,15 +1,15 @@
 import React from 'react'
 import Head from '../components/head'
+import Nav from '../components/nav'
 import 'isomorphic-fetch'
 import "../styles/materialize-v1.0.0/sass/materialize.scss";
 import "./index.scss"
 
 const Home = (props) => {
-  console.log(props)
   return (
     <div>
       <Head title="Home" />
-
+      <Nav />
     </div>
   )
 }
