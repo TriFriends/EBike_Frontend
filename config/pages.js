@@ -10,4 +10,4 @@ function loadConfig() {
         })
 }
 
-exports.loadConfig = loadConfig()
+exports.loadConfig = loadConfig
