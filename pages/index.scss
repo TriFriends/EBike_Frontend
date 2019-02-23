@@ -1,4 +1,29 @@
-.icon_custom {
-    min-width: 20px !important;
-    height: auto;
+@import '../static/styles/variables.scss';
+
+.hero {
+
+    max-width: 100%;
+    box-sizing: border-box;
+    .hero__logo {
+        width: 35em;
+        box-sizing: border-box;
+        height: auto;
+        margin-left: auto;
+        margin-right: auto;
+        display: block;
+        max-width: 350px;
+        &:hover {
+            cursor: pointer;
+        }
+    }
+}
+
+.categories {
+    margin-top: 4em;
+    .categories__item {
+        // border: 4px solid $primary-color;
+        box-sizing: border-box;
+        padding: 0.5em 1.5em;
+        text-align: center;
+    }
 }
