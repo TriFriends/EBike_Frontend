@@ -9,7 +9,8 @@ class Categories extends React.Component {
         isDropdown: false,
         elements: {
             categoryButton: React.createRef(),
-            categoryList: React.createRef()
+            categoryList: React.createRef(),
+            categories: React.createRef()
         }
     }
 
@@ -43,16 +44,32 @@ class Categories extends React.Component {
         })
     }
 
-    dropdown() {
+    drop() {
         console.log(this.state.isDropdown)
         this.setState({
-            isDropdown: !this.state.isDropdown
+            isDropdown: true
         })
     }
+
+    pick(e) {
+        console.log(e)
+        let isOverCategories = UIControl.isOver({
+            element: this.state.elements.categories,
+            mouse: e
+        })
+        if (!isOverCategories) {
+            this.setState({
+                isDropdown: false
+            })
+        }
+
+    }
+
+
     render() {
         return (
-            <div className="categories">
-                <img onClick={this.dropdown.bind(this)} src={require("../static/img/menu.svg")} className="category__button" ref={this.state.elements.categoryButton} />
+            <div className="categories" ref={this.state.elements.categories} onMouseOut={this.pick.bind(this)}>
+                <img onMouseOver={this.drop.bind(this)} src={require("../static/img/menu.svg")} className="category__button" ref={this.state.elements.categoryButton} />
                 {
                     this.state.isDropdown ?
                         <ul ref={this.state.elements.categoryList}>

@@ -1,6 +1,5 @@
 class UIControl {
     static isOver({ element, mouse }) {
-       
         element = element.current
         if (!element) {
             return false
@@ -20,6 +19,25 @@ class UIControl {
         }
         return false
     }
+
+    static validURL(url) {
+        let parts = url.split("/")
+        let splited = ""
+        for (let i = 0; i < parts.length; i++) {
+            let words = parts[i].split(" ")
+            for (let l = 0; l < words.length; l++) {
+                splited += words[l]
+                if (words[l + 1]) {
+                    splited += "-"
+                }
+            }
+            if (parts[i + 1]) {
+                splited += "/"
+            }
+        }
+        return splited
+    }
+
 }
 
 export default UIControl

@@ -1,11 +1,12 @@
-const Category = () => (
-    <div>
-        Kateoriga
-    </div>
-)
+const Category = () => {
+    return (
+        <div>
+            Kateoriga
+        </div>
+    )
+}
 
 Category.getInitialProps = ({ query }) => {
-    console.log(query)
     return query
 }
 

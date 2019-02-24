@@ -6,6 +6,7 @@ import { API_URL } from '../config/consts'
 import Categories from '../components/Categories'
 import 'isomorphic-fetch'
 import Router from '../routes'
+import UIControl from '../utils/UIControl';
 
 class Home extends React.Component {
   static async getInitialProps({ req }) {
@@ -15,13 +16,10 @@ class Home extends React.Component {
   }
 
   homeRoute() {
-    console.log('home')
     Router.Router.pushRoute("home")
   }
 
   render() {
-    console.log(Router)
-    console.log(this.props)
     return (
       <div>
         <Head title="Home">
