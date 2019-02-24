@@ -1,17 +1,18 @@
-@import '../static/styles/variables.scss';
+@import "static/styles/_base.scss";
+@import 'static/styles/_variables.scss';
 
 .hero {
 
     max-width: 100%;
     box-sizing: border-box;
     .hero__logo {
-        width: 35em;
+        width: 100%;
         box-sizing: border-box;
         height: auto;
         margin-left: auto;
         margin-right: auto;
         display: block;
-        max-width: 350px;
+        max-width: 400px;
         &:hover {
             cursor: pointer;
         }
@@ -20,6 +21,9 @@
 
 .categories {
     margin-top: 4em;
+    border-top: 3px solid $primary-color;
+    padding-top: 2em;
+    padding-bottom: 2em;
     .categories__item {
         // border: 4px solid $primary-color;
         box-sizing: border-box;
