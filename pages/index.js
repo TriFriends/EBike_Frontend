@@ -1,7 +1,6 @@
 import React from 'react'
 import Link from 'next/link'
 import Head from '../components/head'
-import "../static/styles/materialize-v1.0.0/sass/materialize.scss"
 import "./index.scss"
 import { API_URL } from '../config/consts'
 import Categories from '../components/Categories'
@@ -9,12 +8,15 @@ import Categories from '../components/Categories'
 const Home = (data) => (
   <div>
     <Head title="Home">
-
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     </Head>
     <div className="hero">
+
       <img src={require("../static/img/last.png")} className="hero__logo" />
     </div>
-    <Categories categories={data.categories} />
+    <div className="container">
+      <Categories categories={data.categories} />
+    </div>
   </div>
 )
 

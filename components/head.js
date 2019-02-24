@@ -33,9 +33,7 @@ class Head extends React.Component {
         <meta property="og:image" content={this.props.ogImage || defaultOGImage} />
         <meta property="og:image:width" content="1200" />
         <meta property="og:image:height" content="630" />
-        <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
-          rel="stylesheet"></link>
-        <script src="../static/styles/materialize-v1.0.0/js/bin/materialize.min.js"></script>
+        <link href="https://fonts.googleapis.com/css?family=Montserrat:300,400i|Roboto" rel="stylesheet" />
         {this.props.children}
       </NextHead>
     )
