@@ -15,7 +15,7 @@ class Categories extends React.Component {
 
     categoryRoute(category) {
         console.log(category)
-        Router.pushRoute(`/${category}`)
+        Router.pushRoute(`/category/${category}`)
     }
 
     componentDidMount() {
