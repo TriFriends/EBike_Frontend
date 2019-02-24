@@ -19,14 +19,20 @@
 
 .categories {
     position: absolute;
+    left: 8vw;
+    width: 20vw;
+    min-width: 200px;
     ul {
-        padding: 1em 2em;
         border: 2px solid $primary-color;
         border-radius: 5px;
     }
     li {
-        margin-top: 0.5em;
-        margin-bottom: 0.5em;
+        padding: 0.5em 2em;
+        &:hover {
+            cursor: pointer;
+            background: $primary-color;
+            color: white;
+        }
     }
 }
 
@@ -35,4 +41,7 @@
     width: 5vw;
     min-width: 30px;
     height: auto;
+    &:hover {
+        cursor: pointer;
+    }
 }

@@ -1,6 +1,6 @@
 class UIControl {
     static isOver({ element, mouse }) {
-        console.log(element)
+       
         element = element.current
         if (!element) {
             return false

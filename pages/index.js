@@ -4,27 +4,39 @@ import Head from '../components/head'
 import "./index.scss"
 import { API_URL } from '../config/consts'
 import Categories from '../components/Categories'
+import 'isomorphic-fetch'
+import Router from '../routes'
 
-const Home = (data) => (
-  <div>
-    <Head title="Home">
-      <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-    </Head>
-    <div className="hero">
+class Home extends React.Component {
+  static async getInitialProps({ req }) {
+    const res = await fetch(`${API_URL}`)
+    const data = await res.json()
+    return data
+  }
 
-      <img src={require("../static/img/last.png")} className="hero__logo" />
-    </div>
-    <div className="container">
-      <Categories categories={data.categories} />
-    </div>
-  </div>
-)
+  homeRoute() {
+    console.log('home')
+    Router.Router.pushRoute("home")
+  }
 
-Home.getInitialProps = async ({ req }) => {
-  const res = await fetch(`${API_URL}`)
-  const json = await res.json()
-  console.log(json)
-  return json
+  render() {
+    console.log(Router)
+    console.log(this.props)
+    return (
+      <div>
+        <Head title="Home">
+          <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+        </Head>
+        <div className="hero">
+          <img src={require("../static/img/last.png")} className="hero__logo" onClick={this.homeRoute} />
+        </div>
+        <div className="container">
+          <Categories categories={this.props.categories} />
+        </div>
+      </div>
+    )
+  }
 }
+
 
 export default Home

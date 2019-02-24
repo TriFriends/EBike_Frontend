@@ -2,6 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import root from 'window-or-global'
 import UIControl from '../utils/UIControl'
+import { Router } from '../routes'
 
 class Categories extends React.Component {
     state = {
@@ -11,6 +12,12 @@ class Categories extends React.Component {
             categoryList: React.createRef()
         }
     }
+
+    categoryRoute(category) {
+        console.log(category)
+        Router.pushRoute(`/${category}`)
+    }
+
     componentDidMount() {
         root.addEventListener("click", (e) => {
             const isOverButton = UIControl.isOver({
@@ -28,7 +35,14 @@ class Categories extends React.Component {
                 })
             }
         })
+
+        window.addEventListener("resize", () => {
+            this.setState({
+                isDropdown: false
+            })
+        })
     }
+
     dropdown() {
         console.log(this.state.isDropdown)
         this.setState({
@@ -44,7 +58,7 @@ class Categories extends React.Component {
                         <ul ref={this.state.elements.categoryList}>
                             {
                                 this.props.categories.map((value, index) => (
-                                    <li key={index}>{value.category_name}</li>
+                                    <li key={index} onClick={this.categoryRoute.bind(this, value.category_name)}>{value.category_name}</li>
                                 ))
                             }
                         </ul> :
@@ -57,23 +71,8 @@ class Categories extends React.Component {
 }
 
 
-const Category = ({ category }) => (
-    <div className="col">
-        <div className="categories__item">
-            <h6>
-                {category.category_name}
-            </h6>
-        </div>
-
-    </div>
-)
-
 Categories.propTypes = {
     categories: PropTypes.array
-}
-
-Category.propTypes = {
-    category: PropTypes.object
 }
 
 export default Categories
