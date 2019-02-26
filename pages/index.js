@@ -1,5 +1,4 @@
 import React from 'react'
-import Link from 'next/link'
 import Head from '../components/head'
 import "./index.scss"
 import { API_URL } from '../config/consts'
@@ -7,11 +6,15 @@ import Categories from '../components/Categories'
 import 'isomorphic-fetch'
 import Router from '../routes'
 import UIControl from '../utils/UIControl';
+import Popular from '../components/Popular';
+import View from '../components/View'
+import MainView from '../components/MainView'
 
 class Home extends React.Component {
   static async getInitialProps({ req }) {
     const res = await fetch(`${API_URL}`)
     const data = await res.json()
+    console.log(data)
     return data
   }
 
@@ -20,17 +23,21 @@ class Home extends React.Component {
   }
 
   render() {
+    console.log(this.props)
     return (
       <div>
         <Head title="Home">
-          <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
         </Head>
         <div className="hero">
           <img src={require("../static/img/last.png")} className="hero__logo" onClick={this.homeRoute} />
         </div>
-        <div className="container">
+        <View>
           <Categories categories={this.props.categories} />
-        </div>
+          <MainView>
+            <Popular popular={this.props.popular} />
+          </MainView>
+        </View>
       </div>
     )
   }

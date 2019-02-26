@@ -18,30 +18,35 @@
 }
 
 .categories {
-    position: absolute;
-    left: 8vw;
-    width: 20vw;
-    min-width: 200px;
-    ul {
-        border: 2px solid $primary-color;
-        border-radius: 5px;
-    }
-    li {
-        padding: 0.5em 2em;
-        &:hover {
-            cursor: pointer;
-            background: $primary-color;
-            color: white;
-        }
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    min-width: 300px;
+    padding-right: 2em;
+    margin-top: 30px;
+    height: 100%;
+}
+
+
+.category {
+    padding: 0.5em 1em;
+    margin: 2px auto;
+    border: 1px solid lightgray;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.category:hover {
+    cursor: pointer;
+    background: $secondary-color;
+}
+
+.popular {
+    margin-top: 30px;
+    h1 {
+        margin-bottom: 20px;
+        padding-left: 15px;
     }
 }
 
-.category__button {
-    max-width: 50px;
-    width: 5vw;
-    min-width: 30px;
-    height: auto;
-    &:hover {
-        cursor: pointer;
-    }
-}
+

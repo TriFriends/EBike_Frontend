@@ -38,6 +38,17 @@ class UIControl {
         return splited
     }
 
+    static validPrice(price) {
+        price = price.toString()
+        price.replace(".", ",")
+        if (price.includes(",")) {
+            price += " zł"
+            return price
+        }
+        price += ",00 zł"
+        return price
+    }
+
 }
 
 export default UIControl
