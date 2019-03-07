@@ -3,6 +3,11 @@
 .hero {
     max-width: 100%;
     box-sizing: border-box;
+    padding-top: 2em;
+    padding-bottom: 2em;
+    margin-bottom: 2em;
+    background: $primary-color;
+    z-index: 5;
     .hero__logo {
         width: 100%;
         box-sizing: border-box;
@@ -11,6 +16,7 @@
         margin-right: auto;
         display: block;
         max-width: 350px;
+        padding: 10px 20px;
         &:hover {
             cursor: pointer;
         }
@@ -34,6 +40,14 @@
     border: 1px solid lightgray;
     width: 100%;
     box-sizing: border-box;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    img {
+        max-width: 30px;
+        height: auto;
+        margin-right: 20px;
+    }
 }
 
 .category:hover {

@@ -24,6 +24,7 @@ const Category = ({ category }) => {
     console.log(category)
     return (
         <div className="category">
+            <img src={process.env.RESOURCE_URL + category.icon} />
             <h5>{category.category_name}</h5>
         </div>
     )

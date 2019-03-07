@@ -24,7 +24,7 @@ class Popular extends React.Component {
 const PopularItem = ({ item }) => (
     <div className="card">
         <div className="card__image">
-            <img src={item.hero_image} />
+            <img src={process.env.RESOURCE_URL + item.hero_image} />
         </div>
         <div className="card__content">
             <p>
