@@ -34,7 +34,6 @@ class Head extends React.Component {
         <meta property="og:image:width" content="1200" />
         <meta property="og:image:height" content="630" />
         <link href="https://fonts.googleapis.com/css?family=Montserrat:300,400i|Roboto" rel="stylesheet" />
-        <link href="../node_modules/css-star-rating/css/star-rating.min.css" rel="stylesheet" />
         {this.props.children}
       </NextHead>
     )

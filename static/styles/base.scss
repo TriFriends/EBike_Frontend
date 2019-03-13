@@ -12,6 +12,10 @@ h1 {
     font-size: 2em;
 }
 
+button {
+    min-height: fit-content;
+}
+
 .row {
     width: 100%;
     display: flex;
@@ -20,7 +24,7 @@ h1 {
 }
 
 .container {
-    max-width: 1200px;
+    max-width: 1300px;
     width: 100%;
     margin-left: auto;
     margin-right: auto;
@@ -30,8 +34,6 @@ h1 {
 
 .card {
     width: 20%;
-    min-width: 200px;
-    max-width: 200px;
     box-sizing: border-box;
     margin: 10px 10px;
     margin-top: 20px;
@@ -43,6 +45,9 @@ h1 {
     align-items: center;
     justify-content: space-between;
     min-height: 350px;
+    min-width: 150px;
+    
+    min-height: fit-content;
     // border-bottom: 1px solid lightgray;
     img {
         display: block;
@@ -54,6 +59,7 @@ h1 {
          margin-bottom: 10px;
          height: 32px;
      }
+     
 }
 
 .card__image {
@@ -75,6 +81,9 @@ h1 {
         cursor: pointer;
         box-shadow: 3px 3px 5px 0px rgba(0,0,0,0.75);
     }
+    -webkit-box-sizing: border-box !important;
+    -moz-box-sizing: border-box !important;
+    box-sizing: border-box !important;
 }
 
 .card__content {

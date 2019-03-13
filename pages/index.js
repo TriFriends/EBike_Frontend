@@ -11,6 +11,7 @@ import MainView from '../components/MainView'
 import global from 'window-or-global'
 import Menu from '../components/Menu';
 import ControlPanel from '../components/ControlPanel';
+import Search from '../components/Search';
 
 class Home extends React.Component {
   static async getInitialProps({ req }) {
@@ -26,13 +27,16 @@ class Home extends React.Component {
 
   componentDidMount() {
     global.onscroll = function () { onScroll() }
+    global.onresize = function () { onResize() }
 
     let hero = document.querySelector(".hero-wrapper")
     let main = document.querySelector(".main")
-
+    let popular = document.querySelector(".popular")
     let hero_height = hero.offsetHeight
     let hero_margin = parseFloat(getComputedStyle(hero).fontSize)
     let sticky = hero.offsetTop
+
+    onResize()
 
     function onScroll() {
       if (global.pageYOffset > sticky) {
@@ -41,6 +45,16 @@ class Home extends React.Component {
       } else {
         hero.classList.remove("sticky");
         main.style.marginTop = '0px'
+      }
+    }
+    function onResize() {
+      let popular_width = popular.offsetWidth
+      console.log(popular_width / 5)
+      let cards = document.querySelectorAll(".card")
+      for (let i = 0; i < cards.length; i++) {
+        if (global.innerWidth > 1200) {
+          cards[i].style.width = popular_width / 5 - 20 + 'px'
+        }
       }
     }
   }
@@ -61,6 +75,7 @@ class Home extends React.Component {
             </div>
           </div>
         </div>
+        <Search />
         <View>
           {/* <Categories categories={this.props.categories} /> */}
           <MainView>
