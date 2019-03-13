@@ -45,7 +45,7 @@ button {
     align-items: center;
     justify-content: space-between;
     min-height: 350px;
-    min-width: 150px;
+    min-width: 250px;
     
     min-height: fit-content;
     // border-bottom: 1px solid lightgray;
@@ -113,6 +113,17 @@ button {
     -webkit-box-shadow: 0px 2px 6px 0px rgba(0,0,0,0.75);
     -moz-box-shadow: 0px 2px 6px 0px rgba(0,0,0,0.75);
     box-shadow: 0px 2px 6px 0px rgba(0,0,0,0.75);
+    z-index: 10;
+}
+
+.sticky-bottom {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    z-index: 10;
+    -webkit-box-shadow: 0px -2px 6px 0px rgba(0,0,0,0.75);
+    -moz-box-shadow: 0px -2px 6px 0px rgba(0,0,0,0.75);
+    box-shadow: 0px -2px 6px 0px rgba(0,0,0,0.75);
 }
 
 .menu {

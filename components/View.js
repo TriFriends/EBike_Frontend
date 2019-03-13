@@ -8,7 +8,7 @@ class View extends React.Component {
     }
     render() {
         return (
-            <div className="container main">
+            <div className="container">
                 {this.props.children}
             </div>
         )

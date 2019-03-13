@@ -30,21 +30,22 @@ class Home extends React.Component {
     global.onresize = function () { onResize() }
 
     let hero = document.querySelector(".hero-wrapper")
-    let main = document.querySelector(".main")
+    // let main = document.querySelector(".search")
     let popular = document.querySelector(".popular")
-    let hero_height = hero.offsetHeight
-    let hero_margin = parseFloat(getComputedStyle(hero).fontSize)
+    // let hero_height = hero.offsetHeight
+    // let hero_margin = parseFloat(getComputedStyle(hero).fontSize)
     let sticky = hero.offsetTop
 
     onResize()
+    onScroll()
 
     function onScroll() {
       if (global.pageYOffset > sticky) {
         hero.classList.add("sticky")
-        main.style.marginTop = `${hero_height + hero_margin - 10}px`
+        // main.style.marginTop = `${hero_height + hero_margin - 10}px`
       } else {
         hero.classList.remove("sticky");
-        main.style.marginTop = '0px'
+        // main.style.marginTop = '0px'
       }
     }
     function onResize() {
@@ -77,7 +78,6 @@ class Home extends React.Component {
         </div>
         <Search />
         <View>
-          {/* <Categories categories={this.props.categories} /> */}
           <MainView>
             <Popular popular={this.props.popular} />
           </MainView>
