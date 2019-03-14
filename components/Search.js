@@ -6,17 +6,15 @@ class Search extends React.Component {
         device: "computer"
     }
     componentDidMount() {
-
-        console.log(parseInt(global.innerWidth) < 800)
         setTimeout(() => {
             let that = this
             console.log(that)
             onResize(that)
             global.onresize = function () { onResize(that) }
+            // global.onscroll = function () { onScroll(that) }
         }, 0)
         function onResize(that) {
-            console.log(that)
-            if (parseInt(global.innerWidth) > 800) {
+            if (parseInt(global.innerWidth) > 1000) {
                 that.setState({
                     device: "computer"
                 })
@@ -32,14 +30,14 @@ class Search extends React.Component {
             <React.Fragment>
                 {
                     this.state.device == "mobile" ?
-                        <div className="search sticky-bottom">
+                        <div className="search sticky-bottom" ref={this.props.computerSearch}>
                             <input placeholder="Szukaj" />
                             <div className="search__button">
                                 <img src={require("../static/img/search.svg")} className="search__icon" />
                             </div>
                         </div> :
-                        <div className="container">
-                            <div className="search">
+                        <div className="container row">
+                            <div className="search search-computer" ref={this.props.computerSearch}>
                                 <input placeholder="Szukaj" />
                                 <div className="search__button">
                                     <img src={require("../static/img/search.svg")} className="search__icon" />

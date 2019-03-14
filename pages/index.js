@@ -14,10 +14,17 @@ import ControlPanel from '../components/ControlPanel';
 import Search from '../components/Search';
 
 class Home extends React.Component {
+
+  state = {
+    refs: {
+      computerSearch: React.createRef()
+    }
+
+  }
+
   static async getInitialProps({ req }) {
     const res = await fetch(`${API_URL}`)
     const data = await res.json()
-    console.log(data)
     return data
   }
 
@@ -26,42 +33,37 @@ class Home extends React.Component {
   }
 
   componentDidMount() {
-    global.onscroll = function () { onScroll() }
-    global.onresize = function () { onResize() }
+    global.onscroll = function () { onScroll(this) }
 
     let hero = document.querySelector(".hero-wrapper")
-    // let main = document.querySelector(".search")
     let popular = document.querySelector(".popular")
-    // let hero_height = hero.offsetHeight
-    // let hero_margin = parseFloat(getComputedStyle(hero).fontSize)
     let sticky = hero.offsetTop
+    let search = this.state.refs.computerSearch.current
 
-    onResize()
-    onScroll()
+    onScroll(this)
+    console.log(search)
 
-    function onScroll() {
+    function onScroll(that) {
       if (global.pageYOffset > sticky) {
         hero.classList.add("sticky")
-        // main.style.marginTop = `${hero_height + hero_margin - 10}px`
-      } else {
-        hero.classList.remove("sticky");
-        // main.style.marginTop = '0px'
-      }
-    }
-    function onResize() {
-      let popular_width = popular.offsetWidth
-      console.log(popular_width / 5)
-      let cards = document.querySelectorAll(".card")
-      for (let i = 0; i < cards.length; i++) {
-        if (global.innerWidth > 1200) {
-          cards[i].style.width = popular_width / 5 - 20 + 'px'
+        if (parseInt(global.innerWidth) > 1000) {
+          search.classList.add("sticky")
+          search.style.top = 100 + "px"
+          search.style.marginTop = "10px"
+        } else {
+          search.classList.remove("sticky")
+          search.style.marginTop = "3em"
         }
+      } else {
+        hero.classList.remove("sticky")
+        search.classList.remove("sticky")
+        search.style.marginTop = "3em"
       }
+
     }
   }
 
   render() {
-    console.log(this.props)
     return (
       <div>
         <Head title="Home">
@@ -76,7 +78,7 @@ class Home extends React.Component {
             </div>
           </div>
         </div>
-        <Search />
+        <Search computerSearch={this.state.refs.computerSearch} />
         <View>
           <MainView>
             <Popular popular={this.props.popular} />
