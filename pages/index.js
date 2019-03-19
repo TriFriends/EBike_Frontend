@@ -17,7 +17,8 @@ class Home extends React.Component {
 
   state = {
     refs: {
-      computerSearch: React.createRef()
+      computerSearch: React.createRef(),
+      main: React.createRef()
     }
 
   }
@@ -39,6 +40,7 @@ class Home extends React.Component {
     let popular = document.querySelector(".popular")
     let sticky = hero.offsetTop
     let search = this.state.refs.computerSearch.current
+    let main = this.state.refs.main.current
 
     onScroll(this)
     console.log(search)
@@ -50,14 +52,21 @@ class Home extends React.Component {
           search.classList.add("sticky")
           search.style.top = 100 + "px"
           search.style.marginTop = "10px"
+          console.log(search.getBoundingClientRect())
         } else {
           search.classList.remove("sticky")
           search.style.marginTop = "3em"
+          console.log(search.getBoundingClientRect().top)
         }
       } else {
         hero.classList.remove("sticky")
         search.classList.remove("sticky")
         search.style.marginTop = "3em"
+      }
+      if (search.classList.contains("sticky")) {
+        main.style.marginTop = search.getBoundingClientRect().top + search.getBoundingClientRect().height + 20 + "px"
+      } else {
+        main.style.marginTop = "4em"
       }
 
     }
@@ -79,7 +88,7 @@ class Home extends React.Component {
           </div>
         </div>
         <Search computerSearch={this.state.refs.computerSearch} />
-        <View>
+        <View main={this.state.refs.main}>
           <MainView>
             <Popular popular={this.props.popular} />
           </MainView>

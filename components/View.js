@@ -1,14 +1,9 @@
-import React, { createRef } from 'react'
+import React from 'react'
 
 class View extends React.Component {
-    state = {
-        refs: {
-            main: React.createRef()
-        }
-    }
     render() {
         return (
-            <div className="container">
+            <div className="container" ref={this.props.main}>
                 {this.props.children}
             </div>
         )
