@@ -140,3 +140,15 @@ button {
         max-width: 50px;
     }
 }
+
+.pop-up {
+    position: absolute;
+    min-width: 200px;
+    background: $primary-color;
+    color: $basic-color;
+}
+
+.categories-mobile {
+    z-index: 10;
+    
+}

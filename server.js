@@ -1,11 +1,13 @@
-const next = require('next')
-const app = next({ dev: process.env.NODE_ENV !== 'production' })
 const express = require('express')
-const routes = require('./routes')
+const next = require('next')
+const Router = require('./routes')
 
-const handler = routes.getRequestHandler(app)
-app.prepare().then(() => {
-    //app.setAssetPrefix(process.env.RESOURCE_URL)
-    express().use(handler).listen(process.env.URL || 3000)
-})
+const app = next({ dev: process.env.NODE_ENV !== 'production' })
+const server = express()
+const handle = Router.getRequestHandler(app)
 
+app.prepare()
+    .then(() => {
+        server.get('*', (req, res) => handle(req, res))
+        server.listen(3000)
+    })

@@ -43,8 +43,6 @@ class Home extends React.Component {
     let main = this.state.refs.main.current
 
     onScroll(this)
-    console.log(search)
-
     function onScroll(that) {
       if (global.pageYOffset > sticky) {
         hero.classList.add("sticky")
@@ -52,21 +50,21 @@ class Home extends React.Component {
           search.classList.add("sticky")
           search.style.top = 100 + "px"
           search.style.marginTop = "10px"
-          console.log(search.getBoundingClientRect())
         } else {
           search.classList.remove("sticky")
           search.style.marginTop = "3em"
-          console.log(search.getBoundingClientRect().top)
         }
       } else {
         hero.classList.remove("sticky")
         search.classList.remove("sticky")
         search.style.marginTop = "3em"
       }
-      if (search.classList.contains("sticky")) {
+      if (search.classList.contains("sticky") && parseInt(global.innerWidth) > 1000) {
         main.style.marginTop = search.getBoundingClientRect().top + search.getBoundingClientRect().height + 20 + "px"
+      } else if (search.classList.contains("sticky-bottom") && parseInt(global.innerWidth) <= 1000) {
+        main.style.marginTop = "300px"
       } else {
-        main.style.marginTop = "4em"
+        main.style.marginTop = "0px"
       }
 
     }
@@ -81,7 +79,7 @@ class Home extends React.Component {
         <div className="hero-wrapper">
           <div className="container">
             <div className="hero">
-              <Menu />
+              <Menu categories={this.props.categories} />
               <img src={require("../static/img/nowy.png")} className="hero__logo" onClick={this.homeRoute} />
               <ControlPanel />
             </div>

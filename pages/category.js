@@ -5,7 +5,7 @@ const Category = () => {
     return (
         <div>
             <Head title="Home">
-                
+
             </Head>
             Kateoriga
         </div>
@@ -13,7 +13,7 @@ const Category = () => {
 }
 
 Category.getInitialProps = ({ query }) => {
-    
+    console.log(query)
     return query
 }
 

@@ -118,7 +118,7 @@
 @media only screen and (max-width: 550px){
     .card {
         width: 100% !important;
-        margin-top: 2em;
+        padding-top: 2em !important;
         margin-bottom: 2em;
         border-top: 1px solid gray;
         p{
@@ -167,7 +167,7 @@
 
 @media only screen and (min-width: 550px) and (max-width: 700px) {
     .card {
-        margin-top: 2em;
+        padding-top: 2em !important;
         margin-bottom: 2em;
         border-top: 1px solid gray;
     }
