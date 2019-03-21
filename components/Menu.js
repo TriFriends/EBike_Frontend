@@ -32,6 +32,9 @@ class Menu extends React.Component {
                     }
                 }
             })
+            document.addEventListener("click", function (e) {
+                e.target.classList
+            })
         })
     }
 
@@ -50,8 +53,21 @@ class Menu extends React.Component {
                 console.log(e)
                 heroHeight = hero.getBoundingClientRect().height + "px"
             }
-
             this.state.refs.menuPopUp.current.style.top = heroHeight
+            let changeState = () => {
+                this.setState({
+                    isPopUp: false
+                })
+            }
+
+            if (this.state.isPopUp) {
+                document.addEventListener("click", function (e) {
+                    if (e.target.classList.contains("black")) {
+                        changeState()
+                    }
+                })
+            }
+
         })
 
     }
