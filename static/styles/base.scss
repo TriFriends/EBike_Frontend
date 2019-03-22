@@ -7,6 +7,9 @@
     color: $basic-color;
 }
 
+body {
+    overflow-x: hidden;
+}
 
 h1 {
     font-size: 2em;
@@ -148,12 +151,20 @@ button {
     color: $basic-color;
 }
 
+.pop-up__item {
+    width: 100%;
+    padding: 0.5em;
+    font-size: 22px;
+}
+
 .categories-mobile {
     z-index: 10;    
 }
 
 .my-dropdown {
     transition-duration: 0.3s !important;
+    max-width: 100%;
+    box-sizing: border-box;
 }
 
 .black {
