@@ -139,7 +139,9 @@
     overflow-x: hidden;
     -webkit-animation: fade-in-fwd 0.4s cubic-bezier(0.390, 0.575, 0.565, 1.000) both;
     animation: fade-in-fwd 0.4s cubic-bezier(0.390, 0.575, 0.565, 1.000) both;
-   
+    box-shadow: 2px 2px 5px 0px rgba(0, 0, 0, 0.75);
+    -webkit-box-shadow: 2px 2px 5px 0px rgba(0, 0, 0, 0.75);
+    -moz-box-shadow: 2px 2px 5px 0px rgba(0, 0, 0, 0.75);
     .pop-up__item {
         max-width: 100%;
     }
@@ -197,6 +199,7 @@
     flex-direction: column;
     position: relative;
     margin-bottom: 20px;
+    transition-duration: 0.3s;
     a {
         @extend .row;
         justify-content: space-between;
@@ -279,7 +282,7 @@
     }
 }
 
-.pop-up__close {
+.menu .pop-up__close {
     position: relative;
     top: 20px;
     right: 20px;

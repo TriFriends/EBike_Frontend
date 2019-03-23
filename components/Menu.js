@@ -65,7 +65,6 @@ class Menu extends React.Component {
                 heroHeight = hero.getBoundingClientRect().height + "px"
             }
 
-
             let changeState = () => {
                 this.setState({
                     isPopUp: false
@@ -78,33 +77,40 @@ class Menu extends React.Component {
             }
 
             if (this.state.isPopUp) {
-                this.state.refs.menuPopUp.current.style.top = heroHeight
+                if (this.state.refs.menuPopUp.current) {
+                    this.state.refs.menuPopUp.current.style.top = heroHeight
 
-                document.body.style.overflow = "hidden"
+                    document.body.style.overflow = "hidden"
 
-                document.addEventListener("click", function (e) {
-                    if (e.target.classList.contains("black") || e.target.classList.contains("pop-up__close")) {
-                        changeState()
+                    document.addEventListener("click", function (e) {
+                        if (e.target.classList.contains("black") || e.target.classList.contains("pop-up__close")) {
+                            changeState()
+                        }
+                    })
+
+                    document.querySelector(".menu .pop-up__close").style.left =
+                        document.querySelector(".menu .pop-up").getBoundingClientRect().width -
+                        document.querySelector(".menu .pop-up__close").getBoundingClientRect().width - 30
+                        + "px"
+
+
+                    let popUpDown = document.querySelector(".menu .pop-up__down"),
+                        popUpDownPos = 0,
+                        menuPopUp = this.state.refs.menuPopUp.current,
+                        popUpChilds = menuPopUp.childNodes
+                    for (let i = 0; i < popUpChilds.length; i++) {
+                        if (!popUpChilds[i].classList.contains("pop-up__down")) {
+                            popUpDownPos += popUpChilds[i].getBoundingClientRect().height
+                        }
                     }
-                })
+                    popUpDownPos = menuPopUp.getBoundingClientRect().height - popUpDownPos - popUpDown.getBoundingClientRect().height - 60
+                    popUpDown.style.top = popUpDownPos + "px"
 
-                document.querySelector(".menu .pop-up__close").style.left =
-                    document.querySelector(".menu .pop-up").getBoundingClientRect().width -
-                    document.querySelector(".menu .pop-up__close").getBoundingClientRect().width - 30
-                    + "px"
-
-
-                let popUpDown = document.querySelector(".menu .pop-up__down"),
-                    popUpDownPos = 0,
-                    menuPopUp = this.state.refs.menuPopUp.current,
-                    popUpChilds = menuPopUp.childNodes
-                for (let i = 0; i < popUpChilds.length; i++) {
-                    if (!popUpChilds[i].classList.contains("pop-up__down")) {
-                        popUpDownPos += popUpChilds[i].getBoundingClientRect().height
+                    if (window.innerHeight <= 600) {
+                        document.querySelector(".menu .pop-up").style.maxHeight = "350px"
                     }
                 }
-                popUpDownPos = menuPopUp.getBoundingClientRect().height - popUpDownPos - popUpDown.getBoundingClientRect().height - 60
-                popUpDown.style.top = popUpDownPos + "px"
+
             }
         })
 
@@ -117,12 +123,33 @@ class Menu extends React.Component {
         let dropDownImg = document.querySelector(".categories-mobile img")
         process.nextTick(() => {
             if (this.state.isDropDown) {
-                document.querySelector(".categories-mobile p").style.marginBottom = "10px"
-                dropDownImg.style.transform = "rotate(180deg)"
-                
+                if (this.state.refs.menuPopUp) {
+                    document.querySelector(".categories-mobile p").style.marginBottom = "10px"
+                    dropDownImg.style.transform = "rotate(180deg)"
+                    document.querySelector(".menu .pop-up__down").style.top = 20 + "px"
+                }
+
             } else {
-                document.querySelector(".categories-mobile p").style.marginBottom = "0px"
-                dropDownImg.style.transform = "rotate(0deg)"
+                if (this.state.refs.menuPopUp) {
+                    document.querySelector(".categories-mobile p").style.marginBottom = "0px"
+                    dropDownImg.style.transform = "rotate(0deg)"
+                    console.log("asd")
+                    setTimeout(() => {
+                        let popUpDown = document.querySelector(".menu .pop-up__down"),
+                            popUpDownPos = 0,
+                            menuPopUp = this.state.refs.menuPopUp.current,
+                            popUpChilds = menuPopUp.childNodes
+                        for (let i = 0; i < popUpChilds.length; i++) {
+                            if (!popUpChilds[i].classList.contains("pop-up__down")) {
+                                popUpDownPos += popUpChilds[i].getBoundingClientRect().height
+                            }
+                        }
+                        popUpDownPos = menuPopUp.getBoundingClientRect().height - popUpDownPos - popUpDown.getBoundingClientRect().height - 60
+                        popUpDown.style.top = popUpDownPos + "px"
+                    }, 300)
+
+                }
+
             }
         })
 
@@ -143,7 +170,7 @@ class Menu extends React.Component {
                 {
                     this.state.isPopUp ?
                         global.innerWidth > 1000 ?
-                            <div className="">
+                            <div className="pop-up-desktop">
                                 asd
                             </div>
                             :
