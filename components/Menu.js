@@ -27,7 +27,6 @@ class Menu extends React.Component {
                             heroHeight = parseInt(window.getComputedStyle(hero, null).getPropertyValue("height"))
                                 + "px"
                         } catch (e) {
-                            console.log(e)
                             heroHeight = hero.getBoundingClientRect().height + "px"
                         }
                         document.querySelector(".menu .pop-up").style.top = heroHeight
@@ -54,7 +53,6 @@ class Menu extends React.Component {
     }
 
     changeIsPopUp() {
-
         this.setState({
             isPopUp: !this.state.isPopUp
         })
@@ -74,6 +72,9 @@ class Menu extends React.Component {
                 })
                 document.body.style.overflow = "scroll"
                 document.body.style.overflowX = "hidden"
+                this.setState({
+                    isDropDown: false
+                })
             }
 
             if (this.state.isPopUp) {
@@ -89,8 +90,21 @@ class Menu extends React.Component {
 
                 document.querySelector(".menu .pop-up__close").style.left =
                     document.querySelector(".menu .pop-up").getBoundingClientRect().width -
-                    document.querySelector(".menu .pop-up__close").getBoundingClientRect().width - 20
+                    document.querySelector(".menu .pop-up__close").getBoundingClientRect().width - 30
                     + "px"
+
+
+                let popUpDown = document.querySelector(".menu .pop-up__down"),
+                    popUpDownPos = 0,
+                    menuPopUp = this.state.refs.menuPopUp.current,
+                    popUpChilds = menuPopUp.childNodes
+                for (let i = 0; i < popUpChilds.length; i++) {
+                    if (!popUpChilds[i].classList.contains("pop-up__down")) {
+                        popUpDownPos += popUpChilds[i].getBoundingClientRect().height
+                    }
+                }
+                popUpDownPos = menuPopUp.getBoundingClientRect().height - popUpDownPos - popUpDown.getBoundingClientRect().height - 60
+                popUpDown.style.top = popUpDownPos + "px"
             }
         })
 
@@ -105,6 +119,7 @@ class Menu extends React.Component {
             if (this.state.isDropDown) {
                 document.querySelector(".categories-mobile p").style.marginBottom = "10px"
                 dropDownImg.style.transform = "rotate(180deg)"
+                
             } else {
                 document.querySelector(".categories-mobile p").style.marginBottom = "0px"
                 dropDownImg.style.transform = "rotate(0deg)"
@@ -143,7 +158,6 @@ class Menu extends React.Component {
                                     <MyDropdown className="Dropdown" open={this.state.isDropDown}>
                                         {
                                             this.props.categories.map((value, index) => {
-                                                console.log(value)
                                                 return (
                                                     <div key={index} className="categories__item">
                                                         <Link route="category" category={value.category_name}>
@@ -157,6 +171,20 @@ class Menu extends React.Component {
                                     </MyDropdown>
                                 </div>
                                 <div className="pop-up__item">Pomoc</div>
+                                <div className="pop-up__down">
+                                    <Link route="login">
+                                        <a>
+                                            <span>Zaloguj</span>
+                                            <img src={require("../static/img/user.svg")} />
+                                        </a>
+                                    </Link>
+                                    <Link route="register">
+                                        <a>
+                                            <span>Zarejestruj</span>
+                                            <img src={require("../static/img/sign-in.svg")} />
+                                        </a>
+                                    </Link>
+                                </div>
                             </div>
                         : ""
                 }

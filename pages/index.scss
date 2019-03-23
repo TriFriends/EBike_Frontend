@@ -146,6 +146,7 @@
 
     .row-space-between {
         max-width: 90vw;
+        max-height: 1.5em;
     }
 
 }
@@ -187,6 +188,33 @@
 
 .categories__item:first-child {
     border-top: none;
+}
+
+.menu .pop-up__down {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    position: relative;
+    margin-bottom: 20px;
+    a {
+        @extend .row;
+        justify-content: space-between;
+        width: 100%;
+        max-width: 150px;
+        align-items: center;
+        padding: 0.5em;
+        //border: 2px solid $secondary-color;
+        margin-top: 0.3em;
+        background: $secondary-color;
+        box-shadow: 2px 2px 5px 0px rgba(0, 0, 0, 0.75);
+        -webkit-box-shadow: 2px 2px 5px 0px rgba(0, 0, 0, 0.75);
+        -moz-box-shadow: 2px 2px 5px 0px rgba(0, 0, 0, 0.75);
+        span {
+            font-weight: 600;
+        }
+        
+    }
 }
 
 @media only screen and (max-width: 550px){
