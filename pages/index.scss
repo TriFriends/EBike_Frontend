@@ -65,9 +65,10 @@
         img {
             max-width: 30px;
             max-height: 30px;
-        }
-        &:hover {
-            cursor: pointer;
+
+            &:hover {
+                cursor: pointer;
+            }
         }
     }
     .control-panel {
@@ -136,17 +137,33 @@
     box-sizing: border-box;
     overflow-y: scroll;
     overflow-x: hidden;
+    -webkit-animation: fade-in-fwd 0.4s cubic-bezier(0.390, 0.575, 0.565, 1.000) both;
+    animation: fade-in-fwd 0.4s cubic-bezier(0.390, 0.575, 0.565, 1.000) both;
+   
     .pop-up__item {
         max-width: 100%;
     }
 
+    .row-space-between {
+        max-width: 90vw;
+    }
+
 }
 
-.categories-mobile p{
+.categories-mobile {
     &:hover {
         cursor: pointer;
     }
+    p {
+        &:hover {
+            cursor: pointer;
+        }
+    }
+    img {
+        transition-duration: 0.3s;
+    }
 }
+
 
 .categories__item {
     max-width: 100%;

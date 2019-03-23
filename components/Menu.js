@@ -54,6 +54,7 @@ class Menu extends React.Component {
     }
 
     changeIsPopUp() {
+
         this.setState({
             isPopUp: !this.state.isPopUp
         })
@@ -90,7 +91,6 @@ class Menu extends React.Component {
                     document.querySelector(".menu .pop-up").getBoundingClientRect().width -
                     document.querySelector(".menu .pop-up__close").getBoundingClientRect().width - 20
                     + "px"
-
             }
         })
 
@@ -100,11 +100,14 @@ class Menu extends React.Component {
         this.setState({
             isDropDown: !this.state.isDropDown
         })
+        let dropDownImg = document.querySelector(".categories-mobile img")
         process.nextTick(() => {
             if (this.state.isDropDown) {
                 document.querySelector(".categories-mobile p").style.marginBottom = "10px"
+                dropDownImg.style.transform = "rotate(180deg)"
             } else {
                 document.querySelector(".categories-mobile p").style.marginBottom = "0px"
+                dropDownImg.style.transform = "rotate(0deg)"
             }
         })
 
@@ -133,7 +136,10 @@ class Menu extends React.Component {
                                 <img src={require("../static/img/delete.svg")} className="pop-up__close" />
                                 <div className="pop-up__item">Home</div>
                                 <div className="pop-up__item categories-mobile">
-                                    <p onClick={this.changeIsDropDown.bind(this)}>Kategorie</p>
+                                    <div className="row-space-between" onClick={this.changeIsDropDown.bind(this)}>
+                                        <p>Kategorie</p>
+                                        <img src={require("../static/img/chevron-arrow-down.svg")} />
+                                    </div>
                                     <MyDropdown className="Dropdown" open={this.state.isDropDown}>
                                         {
                                             this.props.categories.map((value, index) => {
