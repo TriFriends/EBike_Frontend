@@ -45,8 +45,6 @@ class Menu extends React.Component {
                         }
 
                     }
-
-
                 }
             })
         })
@@ -77,10 +75,9 @@ class Menu extends React.Component {
             }
 
             if (this.state.isPopUp) {
+                document.body.style.overflow = "hidden"
                 if (this.state.refs.menuPopUp.current) {
                     this.state.refs.menuPopUp.current.style.top = heroHeight
-
-                    document.body.style.overflow = "hidden"
 
                     document.addEventListener("click", function (e) {
                         if (e.target.classList.contains("black") || e.target.classList.contains("pop-up__close")) {
@@ -109,6 +106,48 @@ class Menu extends React.Component {
                     if (window.innerHeight <= 600) {
                         document.querySelector(".menu .pop-up").style.maxHeight = "350px"
                     }
+                } else {
+
+                    let searchComputer = document.querySelector(".search-computer")
+                    if (!searchComputer.classList.contains("sticky")) {
+                        searchComputer.classList.add("sticky")
+                        console.log(document.querySelector(".hero").getBoundingClientRect().height + "px")
+                        searchComputer.style.top = document.querySelector(".hero").getBoundingClientRect().height + "px"
+                        searchComputer.style.marginTop = "0px"
+                    }
+
+                    document.querySelector(".pop-up-desktop").style.top = searchComputer.getBoundingClientRect().top
+                        + searchComputer.getBoundingClientRect().height
+                        + 10 + "px"
+
+                    document.querySelector(".pop-up-desktop").style.left = searchComputer.getBoundingClientRect().left + "px"
+
+                    document.addEventListener("click", function (e) {
+                        if (e.target.classList.contains("black")) {
+                            changeState()
+                            if (!document.querySelector(".hero-wrapper").classList.contains("sticky")) {
+                                searchComputer.classList.remove("sticky")
+                                searchComputer.style.marginTop = "3em"
+                            }
+                        }
+                    })
+                }
+                //console.log(1300 - parseInt(window.innerWidth) / 2)
+                try {
+                    if (window.innerWidth > 1300) {
+                        console.log("asd")
+                        //document.querySelector(".black").style.left = `-${1300 - window.innerWidth / 2}px`
+                        document.querySelector(".black").style.left = `${-(document.querySelector(".black").parentElement.getBoundingClientRect().x) + 10}px`
+                        document.querySelector(".black").style.minWidth = "100vw"
+                        document.querySelector(".black").style.width = "100vw"
+                    }
+
+                    document.querySelector(".pop-up-desktop").style.left =
+                        document.querySelector(".search").getBoundingClientRect().x
+                        - document.querySelector(".menu").getBoundingClientRect().x + 10 + "px"
+                    console.log(document.querySelector(".pop-up-desktop").style.left)
+                } catch (e) {
+                    console.log(e)
                 }
 
             }
@@ -162,9 +201,7 @@ class Menu extends React.Component {
                 <img src={require("../static/img/menu.svg")} onClick={this.changeIsPopUp.bind(this)} />
                 {
                     this.state.isPopUp ?
-                        global.innerWidth > 1000 ?
-                            "" :
-                            <div className="black"></div>
+                        <div className="black"></div>
                         : ""
                 }
                 {
