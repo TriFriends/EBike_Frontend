@@ -3,6 +3,8 @@ import global from 'window-or-global'
 import { Link } from "../routes"
 import { MyDropdown } from './DropDown'
 import { isChrome } from './helpers/detectBrowser';
+import Router from '../routes'
+
 
 class Menu extends React.Component {
     state = {
@@ -48,6 +50,17 @@ class Menu extends React.Component {
                 }
             })
         })
+    }
+
+    componentWillUnmount() {
+        this.setState({
+            isPopUp: false,
+            isDropDown: false,
+            refs: {
+                menuPopUp: React.createRef()
+            }
+        })
+        document.body.style.overflow = "scroll"
     }
 
     changeIsPopUp() {
@@ -121,9 +134,16 @@ class Menu extends React.Component {
                         + 10 + "px"
 
                     document.querySelector(".pop-up-desktop").style.left = searchComputer.getBoundingClientRect().left + "px"
+                    console.log(document.querySelector(".menu .pop-up__close"))
+                    document.querySelector(".menu .pop-up__close").style.left =
+                        document.querySelector(".menu .pop-up-desktop").getBoundingClientRect().width -
+                        document.querySelector(".menu .pop-up__close").getBoundingClientRect().width - 30
+                        + "px"
+                    document.querySelector(".menu .pop-up__close").style.top = "20px"
+                    document.querySelector(".menu .pop-up__close").style.position = "absolute"
 
                     document.addEventListener("click", function (e) {
-                        if (e.target.classList.contains("black")) {
+                        if (e.target.classList.contains("black") || e.target.classList.contains("pop-up__close")) {
                             changeState()
                             if (!document.querySelector(".hero-wrapper").classList.contains("sticky")) {
                                 searchComputer.classList.remove("sticky")
@@ -194,8 +214,12 @@ class Menu extends React.Component {
 
     }
 
-    render() {
+    changeRoute(route) {
+        Router.pushRoute("category", { category: route })
+    }
 
+    render() {
+        console.log(this.props)
         return (
             <div className="menu" >
                 <img src={require("../static/img/menu.svg")} onClick={this.changeIsPopUp.bind(this)} />
@@ -208,7 +232,23 @@ class Menu extends React.Component {
                     this.state.isPopUp ?
                         global.innerWidth > 1000 ?
                             <div className="pop-up-desktop">
-                                asd
+                                <h2>Kategorie</h2>
+                                <img src={require("../static/img/delete.svg")} className="pop-up__close" />
+                                <div className="categories-dekstop">
+                                    {
+                                        this.props.categories.map((value, index) => {
+                                            return (
+                                                <div
+                                                    className="categories-desktop__item"
+                                                    key={index}
+                                                    onClick={this.changeRoute.bind(this, `${value.category_name.replace(" ", "-").toLowerCase()}`)}>
+                                                    <img src={process.env.RESOURCE_URL + value.icon} />
+                                                    <p>{value.category_name}</p>
+                                                </div>
+                                            )
+                                        })
+                                    }
+                                </div>
                             </div>
                             :
                             <div className="pop-up" ref={this.state.refs.menuPopUp}>
