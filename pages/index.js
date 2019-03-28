@@ -2,7 +2,6 @@ import React from 'react'
 import Head from '../components/head'
 import "./index.scss"
 import { API_URL } from '../config/consts'
-import Categories from '../components/Categories'
 import 'isomorphic-fetch'
 import Router from '../routes'
 import Popular from '../components/Popular';
@@ -20,7 +19,6 @@ class Home extends React.Component {
       computerSearch: React.createRef(),
       main: React.createRef()
     }
-
   }
 
   static async getInitialProps({ req }) {
