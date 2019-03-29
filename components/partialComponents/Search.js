@@ -33,14 +33,14 @@ class Search extends React.Component {
                         <div className="search sticky-bottom" ref={this.props.computerSearch}>
                             <input placeholder="Szukaj" />
                             <div className="search__button">
-                                <img src={require("../static/img/search.svg")} className="search__icon" />
+                                <img src={require("../../static/img/search.svg")} className="search__icon" />
                             </div>
                         </div> :
                         <div className="container row">
                             <div className="search search-computer" ref={this.props.computerSearch}>
                                 <input placeholder="Szukaj" />
                                 <div className="search__button">
-                                    <img src={require("../static/img/search.svg")} className="search__icon" />
+                                    <img src={require("../../static/img/search.svg")} className="search__icon" />
                                 </div>
                             </div>
                         </div>
