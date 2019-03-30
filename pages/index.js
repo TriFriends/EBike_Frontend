@@ -14,8 +14,8 @@ const CustomHead = () => (
   </Head>
 )
 
-const HomeContent = ({ popular }) => (
-  <MainView>
+const HomeContent = ({ popular, mainRef }) => (
+  <MainView mainRef={mainRef}>
     <Popular popular={popular} />
   </MainView>
 )
