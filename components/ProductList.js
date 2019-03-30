@@ -1,27 +1,19 @@
 import React from 'react'
 import UIControl from '../utils/UIControl'
 
-class Popular extends React.Component {
-    render() {
-        console.log(this.props.popular)
-        return (
-            <div className="popular">
-                <h1>Popularne</h1>
-                <div className="row">
-                    {
-                        this.props.popular.map((value, index) => (
-                            <PopularItem item={value} key={index} />
-                        ))
-                    }
-                </div>
+const ProductsList = ({ products, Header }) =>
+    (
+        <div className="row">
+            {
+                products.map((value, index) => (
+                    <ProductsItem item={value} key={index} />
+                ))
+            }
+        </div>
+    )
 
-            </div>
-        )
 
-    }
-}
-
-const PopularItem = ({ item }) => (
+const ProductsItem = ({ item }) => (
     <div className="card">
         <div className="card__image">
             <img src={process.env.RESOURCE_URL + item.hero_image} />
@@ -84,4 +76,4 @@ const PopularItem = ({ item }) => (
     </div>
 )
 
-export default Popular
+export default ProductsList

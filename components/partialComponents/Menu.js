@@ -215,6 +215,7 @@ class Menu extends React.Component {
     }
 
     changeRoute(route) {
+        console.log(route)
         Router.pushRoute("category", { category: route })
     }
 
@@ -236,17 +237,13 @@ class Menu extends React.Component {
                                 <img src="static/img/delete.svg" className="pop-up__close" />
                                 <div className="categories-dekstop">
                                     {
-                                        this.props.categories.map((value, index) => {
-                                            return (
-                                                <div
-                                                    className="categories-desktop__item"
-                                                    key={index}
-                                                    onClick={this.changeRoute.bind(this, `${value.category_name.replace(" ", "-").toLowerCase()}`)}>
-                                                    <img src={process.env.RESOURCE_URL + value.icon} />
-                                                    <p>{value.category_name}</p>
-                                                </div>
-                                            )
-                                        })
+                                        this.props.categories.map((value, index) => (
+                                            <CategoriesItem
+                                                key={index}
+                                                category={value}
+                                                changeRoute={this.changeRoute}
+                                            />
+                                        ))
                                     }
                                 </div>
                             </div>
@@ -261,16 +258,15 @@ class Menu extends React.Component {
                                     </div>
                                     <MyDropdown className="Dropdown" open={this.state.isDropDown}>
                                         {
-                                            this.props.categories.map((value, index) => {
-                                                return (
-                                                    <div key={index} className="categories__item">
-                                                        <Link route="category" category={value.category_name}>
-                                                            <a>{value.category_name}</a>
-                                                        </Link>
-                                                        <img src={process.env.RESOURCE_URL + value.icon} />
-                                                    </div>
+                                            this.props.categories.map((value, index) =>
+                                                (
+                                                    <CategoriesItem
+                                                        key={index}
+                                                        category={value}
+                                                        changeRoute={this.changeRoute}
+                                                    />
                                                 )
-                                            })
+                                            )
                                         }
                                     </MyDropdown>
                                 </div>
@@ -296,5 +292,15 @@ class Menu extends React.Component {
         )
     }
 }
+
+const CategoriesItem = ({ key, category, changeRoute }) => (
+    <div
+        className="categories-desktop__item"
+        key={key}
+        onClick={(e) => changeRoute(`${category.category_name.replace(" ", "-").toLowerCase()}`)}>
+        <img src={process.env.RESOURCE_URL + category.icon} />
+        <p>{category.category_name}</p>
+    </div>
+)
 
 export default Menu

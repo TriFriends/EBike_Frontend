@@ -2,8 +2,7 @@ import React from 'react'
 import Head from '../components/helpers/head'
 import "./index.scss"
 import { API_URL } from '../config/consts'
-import 'isomorphic-fetch'
-import Popular from '../components/Popular';
+import ProductList from '../components/ProductList';
 import MainView from '../components/MainView'
 import Page from '../components/hocComponents/Page';
 
@@ -14,16 +13,16 @@ const CustomHead = () => (
   </Head>
 )
 
-const HomeContent = ({ popular, mainRef }) => (
+const Content = ({ popular, mainRef }) => (
   <MainView mainRef={mainRef}>
-    <Popular popular={popular} />
+    <div className="section">
+      <h1>Popularne</h1>
+      <ProductList products={popular} />
+    </div>
   </MainView>
 )
 
 
-const HomePage = Page({ PageComponent: HomeContent, Head: CustomHead, isSearchBar: true, http: `${API_URL}` })
-
-
-
+const HomePage = Page({ PageComponent: Content, Head: CustomHead, isSearchBar: true, http: `${API_URL}` })
 
 export default HomePage
