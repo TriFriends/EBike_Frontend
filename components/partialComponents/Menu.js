@@ -1,9 +1,9 @@
 import React from 'react'
 import global from 'window-or-global'
-import { Link } from "../routes"
-import { MyDropdown } from './DropDown'
-import { isChrome } from './helpers/detectBrowser';
-import Router from '../routes'
+import { Link } from "../../routes"
+import { MyDropdown } from '../helpers/DropDown'
+import { isChrome } from '../helpers/detectBrowser';
+import Router from '../../routes'
 
 
 class Menu extends React.Component {
@@ -222,7 +222,7 @@ class Menu extends React.Component {
         console.log(this.props)
         return (
             <div className="menu" >
-                <img src={require("../static/img/menu.svg")} onClick={this.changeIsPopUp.bind(this)} />
+                <img src="static/img/menu.svg" onClick={this.changeIsPopUp.bind(this)} />
                 {
                     this.state.isPopUp ?
                         <div className="black"></div>
@@ -233,7 +233,7 @@ class Menu extends React.Component {
                         global.innerWidth > 1000 ?
                             <div className="pop-up-desktop">
                                 <h2>Kategorie</h2>
-                                <img src={require("../static/img/delete.svg")} className="pop-up__close" />
+                                <img src="static/img/delete.svg" className="pop-up__close" />
                                 <div className="categories-dekstop">
                                     {
                                         this.props.categories.map((value, index) => {
@@ -252,12 +252,12 @@ class Menu extends React.Component {
                             </div>
                             :
                             <div className="pop-up" ref={this.state.refs.menuPopUp}>
-                                <img src={require("../static/img/delete.svg")} className="pop-up__close" />
+                                <img src="static/img/delete.svg" className="pop-up__close" />
                                 <div className="pop-up__item">Home</div>
                                 <div className="pop-up__item categories-mobile">
                                     <div className="row-space-between" onClick={this.changeIsDropDown.bind(this)}>
                                         <p>Kategorie</p>
-                                        <img src={require("../static/img/chevron-arrow-down.svg")} />
+                                        <img src="static/img/chevron-arrow-down.svg" />
                                     </div>
                                     <MyDropdown className="Dropdown" open={this.state.isDropDown}>
                                         {
@@ -279,13 +279,13 @@ class Menu extends React.Component {
                                     <Link route="login">
                                         <a>
                                             <span>Zaloguj</span>
-                                            <img src={require("../static/img/user.svg")} />
+                                            <img src="static/img/user.svg" />
                                         </a>
                                     </Link>
                                     <Link route="register">
                                         <a>
                                             <span>Zarejestruj</span>
-                                            <img src={require("../static/img/sign-in.svg")} />
+                                            <img src="static/img/sign-in.svg" />
                                         </a>
                                     </Link>
                                 </div>

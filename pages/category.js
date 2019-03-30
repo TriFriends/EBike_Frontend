@@ -1,5 +1,5 @@
 import Router from 'next/router'
-import Head from '../components/head'
+import Head from '../components/helpers/head'
 
 const Category = () => {
     return (
