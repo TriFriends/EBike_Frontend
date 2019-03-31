@@ -13,13 +13,24 @@ const CustomHead = () => (
     </Head>
 )
 
-const Content = ({ popular, mainRef }) => (
-    <MainView mainRef={mainRef}>
-        <h2>Kategoria</h2>
-    </MainView>
-)
+const Content = ({ products, mainRef }) => {
+    return (
+        <MainView mainRef={mainRef}>
+            <h2>Kategoria</h2>
+        </MainView>
+    )
+}
 
 
-const HomePage = Page({ PageComponent: Content, Head: CustomHead, isSearchBar: true, http: `${API_URL}` })
+const CategoryPage = ({ url: { query } }) => {
+    let http = `${API_URL}/${query.category}`
+    let Component = Page({ PageComponent: Content, Head: CustomHead, isSearchBar: true, http })
+    return (
+        <React.Fragment>
+            <Component />
+        </React.Fragment>
+    )
+}
 
-export default HomePage
+
+export default CategoryPage

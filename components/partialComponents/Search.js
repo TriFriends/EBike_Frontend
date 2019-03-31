@@ -8,7 +8,6 @@ class Search extends React.Component {
     componentDidMount() {
         setTimeout(() => {
             let that = this
-            console.log(that)
             onResize(that)
             global.onresize = function () { onResize(that) }
             // global.onscroll = function () { onScroll(that) }
@@ -26,7 +25,6 @@ class Search extends React.Component {
         }
     }
     render() {
-        console.log(this.props.computerSearchRef)
         return (
             <React.Fragment>
                 {

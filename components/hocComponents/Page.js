@@ -8,7 +8,9 @@ const Page = ({ PageComponent, Head, isSearchBar, http }) => {
     class Page extends React.Component {
 
         static async getInitialProps({ req }) {
-            const res = await fetch(`${http}`)
+            let res
+            console.log(res)
+            res = await fetch(`${http}`)
             const data = await res.json()
             return data
         }
@@ -25,14 +27,21 @@ const Page = ({ PageComponent, Head, isSearchBar, http }) => {
         }
 
         componentDidMount() {
+            fetch(`${http}`).then(res => {
+                return res.json()
+            }).then(res => {
+                console.log(res)
+            })
+
+
             process.nextTick(() => {
+
                 global.onscroll = function () { onScroll(this) }
 
                 let hero = document.querySelector(".hero-wrapper")
                 let sticky = hero.offsetTop
                 let search = this.state.refs.computerSearch.current
                 let main = this.state.refs.main.current
-                console.log(main)
                 onScroll(this)
                 function onScroll(that) {
                     if (global.pageYOffset > sticky) {
@@ -64,6 +73,7 @@ const Page = ({ PageComponent, Head, isSearchBar, http }) => {
         }
 
         render() {
+            console.log(this.props)
             let { categories, popular } = this.props
             return (
                 <React.Fragment>

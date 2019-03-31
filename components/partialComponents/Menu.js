@@ -124,7 +124,6 @@ class Menu extends React.Component {
                     let searchComputer = document.querySelector(".search-computer")
                     if (!searchComputer.classList.contains("sticky")) {
                         searchComputer.classList.add("sticky")
-                        console.log(document.querySelector(".hero").getBoundingClientRect().height + "px")
                         searchComputer.style.top = document.querySelector(".hero").getBoundingClientRect().height + "px"
                         searchComputer.style.marginTop = "0px"
                     }
@@ -134,7 +133,6 @@ class Menu extends React.Component {
                         + 10 + "px"
 
                     document.querySelector(".pop-up-desktop").style.left = searchComputer.getBoundingClientRect().left + "px"
-                    console.log(document.querySelector(".menu .pop-up__close"))
                     document.querySelector(".menu .pop-up__close").style.left =
                         document.querySelector(".menu .pop-up-desktop").getBoundingClientRect().width -
                         document.querySelector(".menu .pop-up__close").getBoundingClientRect().width - 30
@@ -155,7 +153,6 @@ class Menu extends React.Component {
                 //console.log(1300 - parseInt(window.innerWidth) / 2)
                 try {
                     if (window.innerWidth > 1300) {
-                        console.log("asd")
                         //document.querySelector(".black").style.left = `-${1300 - window.innerWidth / 2}px`
                         document.querySelector(".black").style.left = `${-(document.querySelector(".black").parentElement.getBoundingClientRect().x) + 10}px`
                         document.querySelector(".black").style.minWidth = "100vw"
@@ -165,7 +162,6 @@ class Menu extends React.Component {
                     document.querySelector(".pop-up-desktop").style.left =
                         document.querySelector(".search").getBoundingClientRect().x
                         - document.querySelector(".menu").getBoundingClientRect().x + 10 + "px"
-                    console.log(document.querySelector(".pop-up-desktop").style.left)
                 } catch (e) {
                     console.log(e)
                 }
@@ -192,7 +188,6 @@ class Menu extends React.Component {
                 if (this.state.refs.menuPopUp) {
                     document.querySelector(".categories-mobile p").style.marginBottom = "0px"
                     dropDownImg.style.transform = "rotate(0deg)"
-                    console.log("asd")
                     setTimeout(() => {
                         let popUpDown = document.querySelector(".menu .pop-up__down"),
                             popUpDownPos = 0,
@@ -215,12 +210,10 @@ class Menu extends React.Component {
     }
 
     changeRoute(route) {
-        console.log(route)
         Router.pushRoute("category", { category: route })
     }
 
     render() {
-        console.log(this.props)
         return (
             <div className="menu" >
                 <img src="static/img/menu.svg" onClick={this.changeIsPopUp.bind(this)} />
