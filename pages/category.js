@@ -1,20 +1,36 @@
-import Router from 'next/router'
-import Head from '../components/head'
+import React from 'react'
+import Head from '../components/helpers/head'
+import "./index.scss"
+import { API_URL } from '../config/consts'
+import ProductList from '../components/ProductList';
+import MainView from '../components/MainView'
+import Page from '../components/hocComponents/Page';
 
-const Category = () => {
+
+const CustomHead = () => (
+    <Head title="Home">
+        <script src={require("../static/scripts/index.js")}></script>
+    </Head>
+)
+
+const Content = ({ products, mainRef }) => {
     return (
-        <div>
-            <Head title="Home">
-
-            </Head>
-            Kateoriga
-        </div>
+        <MainView mainRef={mainRef}>
+            <h2>Kategoria</h2>
+        </MainView>
     )
 }
 
-Category.getInitialProps = ({ query }) => {
-    console.log(query)
-    return query
+
+const CategoryPage = ({ url: { query } }) => {
+    let http = `${API_URL}/${query.category}`
+    let Component = Page({ PageComponent: Content, Head: CustomHead, isSearchBar: true, http })
+    return (
+        <React.Fragment>
+            <Component />
+        </React.Fragment>
+    )
 }
 
-export default Category
+
+export default CategoryPage
